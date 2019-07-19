@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" type="text/css" href="/public/css/main.css">
+  <script src="/public/js/jquery-3.3.1.min.js"></script>
   <script src="/public/js/index.js"></script>
 </head>
 
@@ -70,50 +71,60 @@
         </ul>
       </div>
       <div class="right user-info">
+        {% if userInfo._id %}
         <div class="user">
           <h2>用户信息</h2>
-          <p>xxx</p>
-          <p>你好，你是管理员 <a href="javascript:;">点击管理</a></p>
-          <span>退出</span>
+          <p class="username">{{ userInfo.username }}</p>
+            {% if userInfo.isAdmin %}
+            <p class="xinxi">你好，我是管理员！<a href="/admin">进入管理</a></p>
+            {% else %}
+            <p class="xinxi">你好，欢迎光临我的博客！</p>
+            {% endif %}
+            <span class="logout">退出</span>
         </div>
-        <div class="login">
+        {% else %}
+        <div class="login" id="login">
           <h2>登录</h2>
           <div class="box">
             <label for="">
               用户名：
-              <input type="text">
+              <input type="text" name="username">
             </label>
             <label for="">
               密码：
-              <input type="text">
+              <input type="text" name="password">
             </label>
             <div class="btn">
               登录
             </div>
             <p>还没注册，<a>马上注册？</a></p>
+            <p class="colWarning">dfh</p>
           </div>
         </div>
-        <div class="register">
+        <div class="register" style="display: none;">
           <h2>注册</h2>
           <div class="box">
             <label for="">
               用户名：
-              <input type="text">
+              <input type="text" name="username">
             </label>
             <label for="">
               密码：
-              <input type="text">
+              <input type="text" name="password">
             </label>
             <label for="">
               确认密码：
-              <input type="text">
+              <input type="text" name="repassword">
             </label>
             <div class="btn">
-              登录
+              注册
             </div>
             <p>已有账号？<a>马上登录</a></p>
+            <p class="colWarning">dfh</p>
           </div>
         </div>
+        {% endif %}
+
       </div>
     </div>
   </div>
